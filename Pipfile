@@ -1,0 +1,23 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+zappa = "*"
+awsebcli = "*"
+
+[packages]
+flask = "*"
+dash = "==0.35.1"
+dash-html-components = "==0.13.4"
+dash-core-components = "==0.42.1"
+dash-table = "==3.1.11"
+pandas = "*"
+numpy = "*"
+flask-caching = "*"
+plotly = "*"
+python-dateutil = "<2.7.0"
+
+[requires]
+python_version = "3.6"
