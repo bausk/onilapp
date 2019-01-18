@@ -95,4 +95,5 @@ application = app.server
 if __name__ == '__main__':
     application.run(debug=True, port=8080)
 else:
-    app.config['requests_pathname_prefix'] = '/dev' + app.config['requests_pathname_prefix']
+    app.config['requests_pathname_prefix'] = '/dev' + \
+        app.config['requests_pathname_prefix']
