@@ -6,6 +6,12 @@ verify_ssl = true
 [dev-packages]
 zappa = "*"
 awsebcli = "*"
+pylint = "*"
+bandit = "*"
+flake8 = "*"
+mypy = "*"
+autopep8 = "*"
+awscli = "*"
 
 [packages]
 flask = "*"

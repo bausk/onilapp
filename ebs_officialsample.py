@@ -1,8 +1,12 @@
+# Taken from https://docs.aws.amazon.com/en_us/elasticbeanstalk/latest/dg/single-container-docker.html
+
 from flask import Flask
 
+
 # Print a nice greeting
-def say_hello(username = "World"):
+def say_hello(username="World"):
     return '<p>Hello %s!</p>\n' % username
+
 
 # Some bits of text for the page
 header_text = '''
@@ -18,12 +22,14 @@ footer_text = '</body>\n</html>'
 application = Flask(__name__)
 
 # Add a rule for the index page
-application.add_url_rule('/', 'index', (lambda: header_text +
-    say_hello() + instructions + footer_text))
+application.add_url_rule('/', 'index', (
+    lambda:
+    header_text + say_hello() + instructions + footer_text))
 
 # Add a rule when the page is accessed with a name appended to the site
 # URL
-application.add_url_rule('/<username>', 'hello', (lambda username:
+application.add_url_rule('/<username>', 'hello', (
+    lambda username:
     header_text + say_hello(username) + home_link + footer_text))
 
 # Run the application
