@@ -1,6 +1,9 @@
 # Project-specific
 cache-directory/
 .vscode/
+zia*
+*.zip
+output/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
