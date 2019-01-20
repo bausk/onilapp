@@ -24,6 +24,8 @@ numpy = "*"
 flask-caching = "*"
 plotly = "*"
 python-dateutil = "<2.7.0"
+gspread = "*"
+oauth2client = "*"
 
 [requires]
 python_version = "3.6"

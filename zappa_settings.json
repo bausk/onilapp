@@ -1,7 +1,7 @@
 {
     "dev": {
         "debug": true,
-        "slim_handler": false,
+        "slim_handler": true,
         "keep_warm": false,
         "aws_region": "us-east-1",
         "app_function": "dashebs.application",

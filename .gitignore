@@ -4,6 +4,8 @@ cache-directory/
 zia*
 *.zip
 output/
+credentials/
+.ebextensions/secrets.config
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
