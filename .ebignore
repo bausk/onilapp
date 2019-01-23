@@ -5,7 +5,6 @@ cache-directory/
 zia*
 *.zip
 output/
-credentials/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
