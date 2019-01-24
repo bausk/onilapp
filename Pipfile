@@ -26,6 +26,7 @@ plotly = "*"
 python-dateutil = "<2.7.0"
 gspread = "*"
 oauth2client = "*"
+redis = "*"
 
 [requires]
 python_version = "3.6"

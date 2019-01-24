@@ -9,6 +9,7 @@ import pandas as pd
 import time
 import uuid
 from backend.gdrive import get_data
+from backend.cache import get_cache
 
 
 external_stylesheets = [
@@ -19,6 +20,9 @@ external_stylesheets = [
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 app.config['suppress_callback_exceptions']=True
+
+
+cache = get_cache(app)
 
 
 def get_dataframe(session_id):
@@ -50,10 +54,23 @@ def serve_layout():
     # session_id = str(uuid.uuid4())
     return html.Div([
         dcc.Tabs(id="tabs", value='tab-1', children=[
-            dcc.Tab(label='Data', value='tab-data'),
-            dcc.Tab(label='Chart', value='tab-chart'),
+            dcc.Tab(
+                label='Data',
+                value='tab-data',
+                className='custom-tab',
+                selected_className='custom-tab--selected'
+                ),
+            dcc.Tab(
+                label='Chart',
+                value='tab-chart',
+                className='custom-tab',
+                selected_className='custom-tab--selected'
+                ),
         ]),
-        html.Div(id='tabs-content')
+        html.Div(
+            id='tabs-content',
+            className='custom-tab-content'
+            )
     ])
 
     # return html.Div([
@@ -75,6 +92,7 @@ def render_data():
     ])
 
 
+@cache.memoize()
 def render_chart():
     return html.Div([
         html.H3('Plot'),
@@ -87,8 +105,8 @@ def render_table_initial():
 
 
 @app.callback(Output('data-content', 'children'),
-              [])
-def render_table_callback():
+              [Input('refresh', 'n_clicks')])
+def render_table_callback(nclicks):
     return render_table()
 
 
