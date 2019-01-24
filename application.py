@@ -8,7 +8,7 @@ import os
 import pandas as pd
 import time
 import uuid
-from backend.gdrive import get_data
+from backend.dummydata import get_data
 
 
 external_stylesheets = [
@@ -21,33 +21,7 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 app.config['suppress_callback_exceptions']=True
 
 
-def get_dataframe(session_id):
-    def query_and_serialize_data(session_id):
-        # expensive or user/session-unique data processing step goes here
-
-        # simulate a user/session-unique data processing step by generating
-        # data that is dependent on time
-        now = datetime.datetime.now()
-
-        # simulate an expensive data processing task by sleeping
-        time.sleep(5)
-
-        df = pd.DataFrame({
-            'time': [
-                str(now - datetime.timedelta(seconds=15)),
-                str(now - datetime.timedelta(seconds=10)),
-                str(now - datetime.timedelta(seconds=5)),
-                str(now)
-            ],
-            'values': ['a', 'b', 'a', 'c']
-        })
-        return df.to_json()
-
-    return pd.read_json(query_and_serialize_data(session_id))
-
-
 def serve_layout():
-    # session_id = str(uuid.uuid4())
     return html.Div([
         dcc.Tabs(id="tabs", value='tab-1', children=[
             dcc.Tab(label='Data', value='tab-data'),
@@ -55,14 +29,6 @@ def serve_layout():
         ]),
         html.Div(id='tabs-content')
     ])
-
-    # return html.Div([
-    #     html.Div(session_id, id='session-id', style={'display': 'none'}),
-    #     html.Button('Get data', id='button'),
-    #     html.Div(id='output-1'),
-    #     html.Div(id='output-2')
-    # ])
-
 
 app.layout = serve_layout
 
