@@ -3,12 +3,9 @@ from dash.dependencies import Input, Output
 import dash_core_components as dcc
 import dash_html_components as html
 import datetime
-from flask_caching import Cache
-import os
 import pandas as pd
 import time
-import uuid
-from backend.dummydata import get_data
+from backend.gdrive import get_data
 
 
 external_stylesheets = [
