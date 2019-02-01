@@ -7,7 +7,7 @@ def get_cache(app):
     CACHE_CONFIG = {
         # try 'filesystem' if you don't want to setup redis
         'CACHE_TYPE': 'redis',
-        'CACHE_REDIS_URL': os.environ.get('REDIS_HOST', 'localhost:6379'),
+        'CACHE_REDIS_URL': os.environ.get('REDIS_HOST', '172.17.0.2:6379'),
         'CACHE_THRESHOLD': 200
     }
     config = {
