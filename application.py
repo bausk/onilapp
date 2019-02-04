@@ -3,14 +3,15 @@ from dash.dependencies import Input, Output
 import dash_core_components as dcc
 import dash_html_components as html
 import datetime
-from flask_caching import Cache
-import os
 import pandas as pd
 import time
-import uuid
 from backend.gdrive import get_data
 from backend.cache import get_cache
 from scripts.startup import startup_development
+
+
+if __name__ == '__main__':
+    startup_development()
 
 
 external_stylesheets = [
@@ -20,7 +21,7 @@ external_stylesheets = [
     'https://codepen.io/chriddyp/pen/brPBPO.css']
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
-app.config['suppress_callback_exceptions']=True
+app.config['suppress_callback_exceptions'] = True
 
 
 cache = get_cache(app)
@@ -131,6 +132,5 @@ application = app.server
 
 
 if __name__ == '__main__':
-    startup_development()
     application.debug = True
     application.run(host="0.0.0.0")

@@ -1,5 +1,7 @@
 import json
 import os
+from scripts.scriptutils.googlecreds import read_google_creds
+from backend.secrets import SECRETS
 
 
 def get_variables(*envs):
@@ -32,6 +34,8 @@ def write_production(variables):
 def write_development(variables):
     for key, value in variables.items():
         os.environ[key] = value
+    serialized_creds = read_google_creds()
+    os.environ[SECRETS.GOOGLE_CRED.value] = serialized_creds
 
 
 if __name__ == '__main__':

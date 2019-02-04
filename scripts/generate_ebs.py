@@ -1,5 +1,7 @@
-from subprocess import check_output
 import json
+from subprocess import check_output
+from scripts.scriptutils.googlecreds import read_google_creds
+
 
 try:
     result = check_output('aws elasticache describe-cache-clusters --show-cache-node-info', shell=True)
@@ -19,12 +21,8 @@ except Exception as e:
 options_config_template = """option_settings:
   - option_name: GSPREAD_CREDENTIALS
     value: {}"""
-options_config = ""
-
-with open('./credentials/googlekey.json', 'r') as credfile:
-    key = credfile.read()
-    serialized = json.dumps(json.loads(key))
-    options_config = options_config_template.format(serialized)
+serialized_creds = read_google_creds()
+options_config = options_config_template.format(serialized_creds)
 
 with open('./.ebextensions/gsheets.config', 'w') as configfile:
     configfile.write(options_config)
