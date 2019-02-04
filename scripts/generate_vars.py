@@ -2,9 +2,9 @@ import json
 import os
 
 
-def get_variables():
+def get_variables(*envs):
     variables = {}
-    for env in ['production', 'staging', 'development']:
+    for env in envs:
         try:
             with open('./credentials/variables.{}.json'.format(env), 'r') as varfile:
                 json_string = varfile.read()
@@ -35,5 +35,5 @@ def write_development(variables):
 
 
 if __name__ == '__main__':
-    variables = get_variables()
+    variables = get_variables('production')
     write_production(variables)

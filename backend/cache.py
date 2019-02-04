@@ -1,23 +1,21 @@
 import os
 from flask_caching import Cache
+from backend.secrets import get_secret, SECRETS
 
 
 def get_cache(app):
-
-    CACHE_CONFIG = {
-        # try 'filesystem' if you don't want to setup redis
-        'CACHE_TYPE': 'redis',
-        'CACHE_REDIS_URL': os.environ.get('REDIS_HOST', '172.17.0.2:6379'),
-        'CACHE_THRESHOLD': 200
-    }
-    config = {
-        # Note that filesystem cache doesn't work on systems with ephemeral
-        # filesystems like Heroku.
-        'CACHE_TYPE': 'filesystem',
-        'CACHE_DIR': '/tmp/cache-directory',
-
-        # should be equal to maximum number of users on the app at a single time
-        # higher numbers will store more data in the filesystem / redis cache
-        'CACHE_THRESHOLD': 200
-    }
+    redis_url = get_secret(SECRETS.REDIS_HOST)
+    if redis_url is not None:
+        CACHE_CONFIG = {
+            # try 'filesystem' if you don't want to setup redis
+            'CACHE_TYPE': 'redis',
+            'CACHE_REDIS_URL': redis_url,
+            'CACHE_THRESHOLD': 200
+        }
+    else:
+        CACHE_CONFIG = {
+            'CACHE_TYPE': 'filesystem',
+            'CACHE_DIR': '/tmp/cache-directory',
+            'CACHE_THRESHOLD': 200
+        }
     return Cache(app.server, config=CACHE_CONFIG)

@@ -6,6 +6,7 @@ zia*
 output/
 credentials/
 .ebextensions/secrets.config
+.ebextensions/gsheets.config
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

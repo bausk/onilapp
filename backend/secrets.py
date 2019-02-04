@@ -9,6 +9,7 @@ class SECRETS(Enum):
     GOOGLE_CRED = 2
     REDIS_HOST = 3
 
+
 def get_secret(secret):
     if secret == SECRETS.GOOGLE_CRED:
         creds = None
@@ -20,4 +21,6 @@ def get_secret(secret):
             creds = ServiceAccountCredentials.from_json_keyfile_name('./credentials/googlekey.json', scope)
         return creds
     if secret == SECRETS.GOOGLE_SHEET:
-        return os.environ['GSPREAD_CREDENTIALS']
+        return os.environ['GSHEETS_SHEET']
+    if secret == SECRETS.REDIS_HOST:
+        return os.environ.get('REDIS_HOST')
