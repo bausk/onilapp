@@ -10,6 +10,7 @@ import time
 import uuid
 from backend.gdrive import get_data
 from backend.cache import get_cache
+from scripts.startup import startup_development
 
 
 external_stylesheets = [
@@ -129,6 +130,7 @@ def render_content(tab):
 application = app.server
 
 
-# if __name__ == '__main__':
-#     application.debug = True
-#     application.run(host="0.0.0.0")
+if __name__ == '__main__':
+    startup_development()
+    application.debug = True
+    application.run(host="0.0.0.0")

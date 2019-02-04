@@ -11,7 +11,7 @@ try:
   - option_name: REDIS_HOST
     value: {}:{}"""
     redis_config = redis_config_template.format(redis_node_url, redis_node_port)
-    with open('./.ebextensions/secrets.config', 'w') as configfile:
+    with open('./.ebextensions/redis.config', 'w') as configfile:
         configfile.write(redis_config)
 except Exception as e:
     pass
@@ -26,5 +26,5 @@ with open('./credentials/googlekey.json', 'r') as credfile:
     serialized = json.dumps(json.loads(key))
     options_config = options_config_template.format(serialized)
 
-with open('./.ebextensions/secrets.config', 'w') as configfile:
+with open('./.ebextensions/gsheets.config', 'w') as configfile:
     configfile.write(options_config)
