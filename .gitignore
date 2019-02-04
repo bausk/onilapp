@@ -7,6 +7,7 @@ output/
 credentials/
 .ebextensions/secrets.config
 .ebextensions/gsheets.config
+.ebextensions/redis.config
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
