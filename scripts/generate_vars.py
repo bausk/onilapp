@@ -1,5 +1,7 @@
 import json
 import os
+import sys 
+sys.path.append('.')
 from scripts.scriptutils.googlecreds import read_google_creds
 from backend.secrets import SECRETS
 

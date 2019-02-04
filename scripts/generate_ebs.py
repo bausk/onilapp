@@ -1,6 +1,6 @@
 import json
 from subprocess import check_output
-from scripts.scriptutils.googlecreds import read_google_creds
+from scriptutils.googlecreds import read_google_creds
 
 
 try:
