@@ -34,4 +34,6 @@
 .custom-tab-content {
     border: 1px solid lightgray !important;
     padding: 8px;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }

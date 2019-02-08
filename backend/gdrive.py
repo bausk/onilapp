@@ -3,6 +3,7 @@ import json
 import gspread
 import pandas as pd
 from backend.secrets import get_secret, SECRETS
+from backend.data import normalize
 
 
 def get_data():
@@ -14,8 +15,13 @@ def get_data():
     return data
 
 
+def time_to_pd(row):
+    return pd.to_datetime(row['DateTime'], infer_datetime_format=True)
+
+
 def get_dataframe():
     data = get_data()
     headers = data.pop(0)
     df = pd.DataFrame(data, columns=headers)
-    return df
+    df['DateTime'] = df.apply(time_to_pd, axis=1)
+    return normalize(df)
