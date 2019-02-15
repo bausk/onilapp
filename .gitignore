@@ -1,4 +1,6 @@
 # Project-specific
+.serverless/
+node_modules
 cache-directory/
 .vscode/
 zia*
@@ -8,6 +10,8 @@ credentials/
 .ebextensions/secrets.config
 .ebextensions/gsheets.config
 .ebextensions/redis.config
+zappa_settings.json
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

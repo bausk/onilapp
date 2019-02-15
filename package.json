@@ -1,0 +1,24 @@
+{
+  "name": "onilapp",
+  "version": "1.0.0",
+  "description": "This is a companion app to my [Python deployment guide](https://github.com/bausk/guides/blob/master/python/01_start_and_deployment.md). Clone it if you want something to play with when making it through the tutorial.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bausk/onilapp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bausk/onilapp/issues"
+  },
+  "homepage": "https://github.com/bausk/onilapp#readme",
+  "devDependencies": {
+    "serverless-python-requirements": "^4.2.4",
+    "serverless-wsgi": "^1.7.1"
+  }
+}

@@ -3,6 +3,7 @@ import os
 import sys 
 sys.path.append('.')
 from scripts.scriptutils.googlecreds import read_google_creds
+from scripts import generate_ebs, generate_lambda
 from backend.secrets import SECRETS
 
 
@@ -23,16 +24,6 @@ def get_variables(*envs):
     return variables
 
 
-def write_production(variables):
-    lines = ["option_settings:"]
-    variable_template = """  - option_name: {}
-    value: {}"""
-    for key, value in variables.items():
-        lines.append(variable_template.format(key, value))
-    with open('./.ebextensions/secrets.config', 'w') as configfile:
-        configfile.write('\n'.join(lines))
-
-
 def write_development(variables):
     for key, value in variables.items():
         os.environ[key] = value
@@ -42,4 +33,5 @@ def write_development(variables):
 
 if __name__ == '__main__':
     variables = get_variables('production')
-    write_production(variables)
+    generate_ebs.write_variables(variables)
+    generate_lambda.write_variables(variables)

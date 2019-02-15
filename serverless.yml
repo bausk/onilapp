@@ -1,0 +1,39 @@
+# serverless.yml
+
+service: onillambda
+
+plugins:
+  - serverless-python-requirements
+  - serverless-wsgi
+
+custom:
+  wsgi:
+    app: app.app
+    packRequirements: false
+  pythonRequirements:
+    slim: true
+    dockerizePip: non-linux
+    pythonBin: python
+
+package:
+  exclude:
+  - .venv/**
+  - .idea/**
+  - .git/**
+  - .ebextensions/**
+  - .elasticbeanstalk/**
+  - .vscode/**
+  - scripts/**  
+
+provider:
+  name: aws
+  runtime: python3.6
+  stage: dev
+  region: us-east-1
+
+functions:
+  app:
+    handler: wsgi_handler.handler
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'
