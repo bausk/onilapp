@@ -1,13 +1,24 @@
-# app.py
-
 from flask import Flask
-app = Flask(__name__)
 import redis
+from scripts.startup import startup_development
+
+
+app = Flask(__name__)
 
 
 @app.route("/")
 def hello():
-    client = redis.Redis(host='aws-my-ykaw4bq1mf7j.pw70f5.0001.use1.cache.amazonaws.com')
-    res1 = client.set('foo', 'bar')
-    res2 = client.get('foo')
+    try:
+        client = redis.StrictRedis(host='redis-14910.c9.us-east-1-4.ec2.cloud.redislabs.com', port=14910, db=0, password='dis7location')
+        res1 = client.set('foo', 'bar')
+        res2 = client.get('foo')
+    except Exception as e:
+        print(e)
     return "Hello World! {}, {}".format(res1, res2)
+
+if __name__ == '__main__':
+    startup_development()
+
+    print('> entered application app.main')
+    app.debug = False
+    app.run(host="0.0.0.0")

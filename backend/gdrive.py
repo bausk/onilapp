@@ -11,7 +11,7 @@ def get_data():
     creds = get_secret(SECRETS.GOOGLE_CRED)
     gdrive_client = gspread.authorize(creds)
     data_sheet = gdrive_client.open_by_url(url)
-    data = data_sheet.get_worksheet(0).get_all_records()    
+    data = data_sheet.get_worksheet(0).get_all_records()
     return data
 
 

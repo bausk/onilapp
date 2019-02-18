@@ -1,4 +1,7 @@
 # Project-specific
+secrets.yml
+.serverless/
+node_modules
 .git/
 cache-directory/
 .vscode/

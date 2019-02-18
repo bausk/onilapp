@@ -8,7 +8,7 @@ plugins:
 
 custom:
   wsgi:
-    app: app.app
+    app: lambda_entrypoint.application
     packRequirements: false
   pythonRequirements:
     slim: true
@@ -23,13 +23,17 @@ package:
   - .ebextensions/**
   - .elasticbeanstalk/**
   - .vscode/**
-  - scripts/**  
 
 provider:
   name: aws
   runtime: python3.6
   stage: dev
   region: us-east-1
+  environment:
+    GSHEETS_SHEET: ${file(./secrets.yml):GSHEETS_SHEET}
+    REDIS_HOST: ${file(./secrets.yml):REDIS_HOST}
+    GSPREAD_CREDENTIALS: ${file(./secrets.yml):GSPREAD_CREDENTIALS}
+    REDIS_PWD: ${file(./secrets.yml):REDIS_PWD}
 
 functions:
   app:

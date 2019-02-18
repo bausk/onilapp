@@ -1,4 +1,5 @@
 # Project-specific
+secrets.yml
 .serverless/
 node_modules
 cache-directory/

@@ -8,6 +8,7 @@ class SECRETS(Enum):
     GOOGLE_SHEET = 'GSHEETS_SHEET'
     GOOGLE_CRED = 'GSPREAD_CREDENTIALS'
     REDIS_HOST = 'REDIS_HOST'
+    REDIS_PWD = 'REDIS_PWD'
 
 
 def get_secret(secret):
@@ -24,3 +25,5 @@ def get_secret(secret):
         return os.environ[SECRETS.GOOGLE_SHEET.value]
     if secret == SECRETS.REDIS_HOST:
         return os.environ.get(SECRETS.REDIS_HOST.value)
+    if secret == SECRETS.REDIS_PWD:
+        return os.environ.get(SECRETS.REDIS_PWD.value)

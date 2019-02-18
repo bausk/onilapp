@@ -3,7 +3,7 @@ import os
 import sys 
 sys.path.append('.')
 from scripts.scriptutils.googlecreds import read_google_creds
-from scripts import generate_ebs, generate_lambda
+from scripts import generate_ebs, generate_lambda, generate_sls
 from backend.secrets import SECRETS
 
 
@@ -35,3 +35,5 @@ if __name__ == '__main__':
     variables = get_variables('production')
     generate_ebs.write_variables(variables)
     generate_lambda.write_variables(variables)
+    variables = get_variables('slslambda')
+    generate_sls.write_variables(variables)
