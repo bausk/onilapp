@@ -244,23 +244,6 @@ def render_chart(val, session_id, ns, nb, start_date, end_date, current_layout, 
     # 2.2. Data.
     surface_points = single_day(data)
 
-    # trace = {
-    #     "type": "contour",
-    #     'x': surface_points[0],
-    #     'y': surface_points[1],
-    #     'z': surface_points[2],
-    #     'connectgaps': True,
-    #     'line': {'smoothing': '1'},
-    #     'contours': {'coloring': 'heatmap'},
-    #     'autocolorscale': True,
-    #     # "colorscale": [
-    #     #     [0, "rgb(244,236,21)"], [0.3, "rgb(249,210,41)"], [0.4, "rgb(134,191,118)"],
-    #     #     [0.5, "rgb(37,180,167)"], [0.65, "rgb(17,123,215)"], [1, "rgb(54,50,153)"],
-    #     # ],
-    #     # Add colorscale log
-    #     # "reversescale": True,
-    # }
-
     trace1 = {
         "type": "mesh3d",
         'x': surface_points[0],
