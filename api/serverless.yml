@@ -1,26 +1,21 @@
 # serverless.yml
 
-service: onillambda
+service: onillambda-apiv2
 
 plugins:
   - serverless-python-requirements
   - serverless-wsgi
-  - serverless-domain-manager
+  - serverless-offline
 
 custom:
   wsgi:
-    app: api.application
+    app: api.app
     packRequirements: false
   pythonRequirements:
     slim: true
     dockerizePip: non-linux
     pythonBin: python
-  secrets: ${file(app/secrets.json)}
-  customDomain:
-    domainName: ${self:custom.secrets.DOMAIN}
-    basePath: ''
-    stage: 'dev'
-    createRoute53Record: false
+  secrets: ${file(secrets.json)}
 
 
 package:
@@ -38,9 +33,6 @@ provider:
   runtime: python3.6
   stage: dev
   region: us-east-1
-  environment:
-    GSHEETS_SHEET: ${file(./secrets.yml):GSHEETS_SHEET}
-    GSPREAD_CREDENTIALS: ${file(./secrets.yml):GSPREAD_CREDENTIALS}
 
 functions:
   app:
@@ -48,3 +40,4 @@ functions:
     events:
       - http: ANY api
       - http: 'ANY api/{proxy+}'
+

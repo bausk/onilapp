@@ -28,6 +28,12 @@ python-dateutil = "<2.7.0"
 gspread = "*"
 oauth2client = "*"
 redis = "*"
+python-dotenv = "*"
+python-jose-cryptodome = "*"
+flask-cors = "*"
+six = "*"
+auth0-python = "*"
+authlib = "*"
 
 [requires]
 python_version = "3.6"

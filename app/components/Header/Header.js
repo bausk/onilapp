@@ -38,6 +38,7 @@ box-shadow: rgb(255, 255, 255) 1px 1px 0px 0px;
 box-sizing: border-box;
 color: rgb(0, 0, 0);
 flex: 1;
+cursor: pointer;
 `;
 
 const SelectedTab= styled(Tab)`
